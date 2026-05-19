@@ -24,5 +24,5 @@ This project uses ESP32-S3 and Machine Learning for smart agriculture monitoring
 - Arduino IDE
 
 ## Author
-Nithyanandhan Ragunathan
-Northumbria University
+Nithyanandhan Ragunathan,
+Northumbria University, UK
