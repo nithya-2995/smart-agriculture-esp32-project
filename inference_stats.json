@@ -1,0 +1,10 @@
+{
+  "samples": 288,
+  "mean_latency_ms": 0.004390350694697768,
+  "median_latency_ms": 0.0030300000020133666,
+  "p95_latency_ms": 0.006549249993526018,
+  "max_latency_ms": 0.19340000000056534,
+  "pump_activations": 1,
+  "total_rainfall_mm": 187.69,
+  "most_recommended_crop": "mungbean"
+}

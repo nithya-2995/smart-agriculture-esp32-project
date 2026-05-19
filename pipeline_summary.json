@@ -1,0 +1,37 @@
+{
+  "dataset": {
+    "samples": 2200,
+    "features": 7,
+    "classes": 22
+  },
+  "train_split": {
+    "train": 1760,
+    "test": 440
+  },
+  "keras_nn": {
+    "architecture": "Dense(32,relu) -> Dense(16,relu) -> Dense(22,softmax)",
+    "epochs": 80,
+    "batch_size": 32,
+    "training_time_seconds": 12.86,
+    "accuracy": 0.9841,
+    "precision": 0.9848,
+    "recall": 0.9841,
+    "f1_score": 0.9841
+  },
+  "tflite_float32": {
+    "size_bytes": 6868,
+    "size_kb": 6.71,
+    "accuracy": 0.9841,
+    "mean_latency_ms": 0.0012,
+    "median_latency_ms": 0.001
+  },
+  "tflite_int8_esp32s3": {
+    "size_bytes": 5600,
+    "size_kb": 5.47,
+    "accuracy": 0.9864,
+    "mean_latency_ms": 0.0013,
+    "median_latency_ms": 0.0012,
+    "max_latency_ms": 0.0245,
+    "compression_ratio": 1.23
+  }
+}
