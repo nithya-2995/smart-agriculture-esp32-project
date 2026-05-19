@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "author": "LD7182 - Smart Agriculture",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -130, "left": -150,
+      "attrs": { "temperature": "28", "humidity": "72" } },
+    { "type": "wokwi-potentiometer", "id": "soil", "top": -50, "left": -200,
+      "attrs": { "value": "350" }, "comment": "Soil moisture (analogue)" },
+    { "type": "wokwi-potentiometer", "id": "rain", "top": 50, "left": -200,
+      "attrs": { "value": "300" }, "comment": "Rain sensor (analogue)" },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": -130, "left": 200,
+      "attrs": {} },
+    { "type": "wokwi-buzzer", "id": "buz1", "top": 60, "left": 220, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd1", "top": 200, "left": 0,
+      "attrs": { "pins": "i2c" } },
+    { "type": "wokwi-led", "id": "led1", "top": -40, "left": 250,
+      "attrs": { "color": "green" } }
+  ],
+  "connections": [
+    [ "dht1:VCC",  "esp:3V3",  "red",   [ "v0" ] ],
+    [ "dht1:SDA",  "esp:4",    "green", [ "v0" ] ],
+    [ "dht1:GND",  "esp:GND",  "black", [ "v0" ] ],
+
+    [ "soil:VCC",  "esp:3V3",  "red",   [ "v0" ] ],
+    [ "soil:GND",  "esp:GND",  "black", [ "v0" ] ],
+    [ "soil:SIG",  "esp:34",   "yellow",[ "v0" ] ],
+
+    [ "rain:VCC",  "esp:3V3",  "red",   [ "v0" ] ],
+    [ "rain:GND",  "esp:GND",  "black", [ "v0" ] ],
+    [ "rain:SIG",  "esp:35",   "blue",  [ "v0" ] ],
+
+    [ "esp:26",        "relay1:IN",  "orange", [ "v0" ] ],
+    [ "esp:5V",        "relay1:VCC", "red",    [ "v0" ] ],
+    [ "esp:GND",       "relay1:GND", "black",  [ "v0" ] ],
+
+    [ "esp:27",   "buz1:1",   "purple", [ "v0" ] ],
+    [ "buz1:2",   "esp:GND",  "black",  [ "v0" ] ],
+
+    [ "lcd1:VCC", "esp:5V",   "red",    [ "v0" ] ],
+    [ "lcd1:GND", "esp:GND",  "black",  [ "v0" ] ],
+    [ "lcd1:SDA", "esp:21",   "green",  [ "v0" ] ],
+    [ "lcd1:SCL", "esp:22",   "yellow", [ "v0" ] ],
+
+    [ "esp:2",    "led1:A",   "green",  [ "v0" ] ],
+    [ "led1:C",   "esp:GND",  "black",  [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

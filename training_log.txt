@@ -1,0 +1,101 @@
+======================================================================
+LD7182 - AI for IoT  |  ML Training Pipeline Execution Log
+======================================================================
+Python    : 3.12.3
+TensorFlow: 2.21.0
+NumPy     : 2.4.4
+Random seed: 42
+
+>> [1/7] Loading dataset ...
+   Shape          : (2200, 8)
+   Features       : ['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall']
+   Target classes : 22
+   Missing values : 0
+
+>> [2/7] Preprocessing ...
+   Encoded 22 crop classes
+   Train size: (1760, 7)   Test size: (440, 7)
+   Saved scaler_params.json
+
+>> [3/7] Building & training Keras NN (TinyML-compatible) ...
+   Model: "sequential"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ hidden1 (Dense)                 │ (None, 32)             │           256 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ hidden2 (Dense)                 │ (None, 16)             │           528 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ crop_output (Dense)             │ (None, 22)             │           374 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+ Total params: 1,158 (4.52 KB)
+ Trainable params: 1,158 (4.52 KB)
+ Non-trainable params: 0 (0.00 B)
+
+   Training completed in 12.86 s over 80 epochs
+
+   Saved training_curves.png
+
+>> [4/7] Evaluating Keras model on test set ...
+   Accuracy : 0.9841
+   Precision: 0.9848
+   Recall   : 0.9841
+   F1-Score : 0.9841
+
+   Saved cm_keras_nn.png and classification_report.txt
+
+>> [5/7] Converting model to TensorFlow Lite (TinyML) ...
+   Float32 TFLite size: 6,868 bytes (6.7 KB)
+   INT8    TFLite size: 5,600 bytes (5.5 KB)
+   Compression ratio: 1.23x
+
+>> [6/7] Benchmarking TFLite models ...
+   Float32  -> Accuracy 0.9841  | mean 0.001 ms | median 0.001 ms | max 0.033 ms
+   INT8     -> Accuracy 0.9864  | mean 0.001 ms | median 0.001 ms | max 0.025 ms
+
+   Saved cm_tflite_int8.png and tflite_benchmark.png
+
+>> [7/7] Generating C header (crop_model_data.h) for ESP32-S3 ...
+   Header file written: /home/claude/tech_outputs/crop_model_data.h
+   Header lines: 477
+
+======================================================================
+PIPELINE COMPLETE — All outputs saved to: /home/claude/tech_outputs
+======================================================================
+{
+  "dataset": {
+    "samples": 2200,
+    "features": 7,
+    "classes": 22
+  },
+  "train_split": {
+    "train": 1760,
+    "test": 440
+  },
+  "keras_nn": {
+    "architecture": "Dense(32,relu) -> Dense(16,relu) -> Dense(22,softmax)",
+    "epochs": 80,
+    "batch_size": 32,
+    "training_time_seconds": 12.86,
+    "accuracy": 0.9841,
+    "precision": 0.9848,
+    "recall": 0.9841,
+    "f1_score": 0.9841
+  },
+  "tflite_float32": {
+    "size_bytes": 6868,
+    "size_kb": 6.71,
+    "accuracy": 0.9841,
+    "mean_latency_ms": 0.0012,
+    "median_latency_ms": 0.001
+  },
+  "tflite_int8_esp32s3": {
+    "size_bytes": 5600,
+    "size_kb": 5.47,
+    "accuracy": 0.9864,
+    "mean_latency_ms": 0.0013,
+    "median_latency_ms": 0.0012,
+    "max_latency_ms": 0.0245,
+    "compression_ratio": 1.23
+  }
+}

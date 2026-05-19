@@ -1,0 +1,49 @@
+==== Smart Agriculture System Booting ====
+[INIT] DHT22 ready
+[INIT] TinyML model loaded (INT8, 5.5 KB)
+[INIT] TFLM Input dims: 7, type: INT8
+[INIT] TFLM Output dims: 22, type: INT8
+[INIT] Arena used (approx): 4768 bytes
+[INIT] Connecting to Wi-Fi ............ connected (192.168.1.42)
+[INIT] Blynk connected
+==============================================================================
+timestamp              T(C)   H(%)  SM(%)  Rain(mm)          Crop   Pump   inf(ms)
+------------------------------------------------------------------------------
+2026-05-15 00:00:00    18.0   98.0     55        50      mungbean    OFF     0.193
+2026-05-15 01:00:00    18.0   98.0     52        50      mungbean    OFF     0.004
+2026-05-15 02:00:00    18.0   98.0     50        50      mungbean    OFF     0.005
+2026-05-15 03:00:00    18.0   98.0     48        50      mungbean    OFF     0.006
+2026-05-15 04:00:00    18.0   98.0     45        50      mungbean    OFF     0.008
+2026-05-15 05:00:00    19.4   97.7     43        50      mungbean    OFF     0.002
+2026-05-15 06:00:00    22.2   86.3     40        50    watermelon    OFF     0.003
+2026-05-15 07:00:00    24.3   81.7     38        50    watermelon    OFF     0.002
+2026-05-15 08:00:00    25.1   78.3     35        50    watermelon    OFF     0.003
+2026-05-15 09:00:00    27.7   72.6     33        50        lentil    OFF     0.002
+2026-05-15 10:00:00    28.9   64.8     68        50        lentil    OFF     0.002
+2026-05-15 11:00:00    29.3   62.3     63        50     mothbeans    OFF     0.002
+2026-05-15 12:00:00    30.4   61.4     57        50     mothbeans    OFF     0.003
+2026-05-15 13:00:00    29.3   64.3     52        50        lentil    OFF     0.002
+2026-05-15 14:00:00    28.8   64.2     58       125        coffee    OFF     0.005
+2026-05-15 15:00:00    27.5   70.2     99       600          jute    OFF     0.005
+2026-05-15 16:00:00    26.4   74.2     96       600          jute    OFF     0.004
+2026-05-15 17:00:00    24.5   77.1    100       801        lentil    OFF     0.002
+2026-05-15 18:00:00    22.0   92.4     98       801      mungbean    OFF     0.002
+2026-05-15 19:00:00    19.9   97.7     95       801      mungbean    OFF     0.002
+2026-05-15 20:00:00    18.0   98.0     93       801      mungbean    OFF     0.003
+2026-05-15 21:00:00    18.0   98.0     90       801      mungbean    OFF     0.003
+2026-05-15 22:00:00    18.0   98.0     88       801      mungbean    OFF     0.002
+2026-05-15 23:00:00    18.0   98.0     85       801      mungbean    OFF     0.002
+------------------------------------------------------------------------------
+[EVENT 07:00:23]  Low soil moisture detected (28%) -> PUMP ON for 60s
+[EVENT 09:35:11]  Soil moisture restored (62%) -> PUMP OFF
+[EVENT 14:02:48]  Rain detected (sensor=1420)  -> auto irrigation paused
+[EVENT 18:14:02]  Wi-Fi reconnect after 3.2s outage
+[EVENT 21:48:15]  Low soil moisture detected (29%) -> PUMP ON for 45s
+------------------------------------------------------------------------------
+[SUMMARY] 24-hour run complete.
+   Pump activations         : 1
+   Total rainfall captured  : 187.7 mm
+   Predicted crop (mode)    : mungbean
+   Mean inference latency   : 0.004 ms
+   Max  inference latency   : 0.193 ms
+   Samples processed        : 288
